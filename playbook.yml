@@ -1,0 +1,38 @@
+---
+# Ansible playbook to install Kubernetes (k3s) in Raspberry Pi
+- name: Pre-check requirements and dependencies for Kubernetes installation
+  hosts: rpi
+  vars:
+    ansible_ver: 2.10.4
+  pre_tasks:
+    - name: Verify minimum Ansible version requirements.
+      assert:
+        that: "ansible_version.full is version_compare('{{ ansible_ver }}', '>=')"
+        msg: "Supported minimum Ansible version is {{ ansible_ver }}."
+    - name: Update apt cache for Debian
+      become: yes
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      when: ansible_os_family == 'Debian'
+
+- name: Install Kubernetes (k3s) in all Nodes
+  hosts: k3s_cluster
+  gather_facts: yes
+  become: yes
+  roles:
+    - role: prereq
+    - role: download
+    - role: raspberrypi
+
+- name: Configure k3s Master node
+  hosts: master
+  become: yes
+  roles:
+    - role: k3s/master
+
+- name: Configure k3s Master node
+  hosts: node
+  become: yes
+  roles:
+    - role: k3s/node
