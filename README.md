@@ -97,15 +97,17 @@ scp debian@master_ip:~/.kube/config ~/.kube/config
     ```bash
     $ make update-fork
     ```
+- Update `group_vars/all.yml` to match the environment.
+
 
 ## ??? Run Ansible playbooks
 1. Run Ansible ping to test connectivity to Raspberry Pi.
     ```bash
-    $ ansible-playbook -i hosts.ini ansible_ping.yml -l rpi
+    $ ansible-playbook -i hosts.ini ansible_ping.yml
     ```
 2. Install and configure Kubernetes (k3s) on Raspberry Pi.
     ```bash
-    $ ansible-playbook -i hosts.ini playbook.yml
+    $ ansible-playbook -i hosts.ini site.yml
     ```
 
 ## References
