@@ -76,11 +76,12 @@ scp debian@master_ip:~/.kube/config ~/.kube/config
 - The playbooks are configured to use _SSH Keys_ instead of username/password to connect to Raspberry Pi.
     - ???`hosts_example.ini` shows an example hosts file used for Ansible playbooks.
 
-### ??? Notes:
+### Notes:
 - Global variables file `group_vars/all.yml` is updated to be more permanent/static.
-    - Updated with latest stable k3s release: `v1.19.5+k3s2`
-    - `ansible_user` variable will be set in the `hosts.ini`.
-- Run the _playbpook.yml_ Ansible playbook (derived) instead of _site.yml_. 
+    - If `k3s_version` is not defined, the playbook will automatically install the latest k3s version.
+    - Set the `k3s_version` to install a specific k3s version.
+    - Set the `ansible_user` variable if different that current ansible server.
+- When adding new _**Worker nodes**_ to the cluster, add the new host to the `[node]` ansible group in `hosts.ini` file and re-run the playbook.
 
 #### Setup environment
 - Pre-requisites:
@@ -97,17 +98,21 @@ scp debian@master_ip:~/.kube/config ~/.kube/config
     ```bash
     $ make update-fork
     ```
-- Update `group_vars/all.yml` to match the environment.
+- Update global variables in `group_vars/all.yml` to match the environment if needed.
 
 
 ## ??? Run Ansible playbooks
-1. Run Ansible ping to test connectivity to Raspberry Pi.
+1. Run Ansible ping to test connectivity.
     ```bash
     $ ansible-playbook -i hosts.ini ansible_ping.yml
     ```
-2. Install and configure Kubernetes (k3s) on Raspberry Pi.
+2. Install and configure Kubernetes (k3s).
     ```bash
     $ ansible-playbook -i hosts.ini site.yml
+    ```
+3. Unconfigure and uninstall Kubernetes (k3s).
+    ```bash
+    $ ansible-playbook -i hosts.ini reset.yml
     ```
 
 ## References
