@@ -2,13 +2,14 @@
 name: Lint
 on:
   pull_request:
-    - dev
-    - develop
-push:
-  branches:
-    - master
-    - dev
-    - develop
+    branches:
+      - dev
+      - develop
+  push:
+    branches:
+      - master
+      - dev
+      - develop
 
 jobs:
   test:
