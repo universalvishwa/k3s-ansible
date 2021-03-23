@@ -5,6 +5,9 @@
 Forked from [k3s-ansible](https://github.com/k3s-io/k3s-ansible)
 Author: <https://github.com/itwars>
 
+
+<details><summary>Read me from the official repository</summary>
+
 ## K3s Ansible Playbook
 
 Build a Kubernetes cluster using Ansible with k3s. The goal is easily install a Kubernetes cluster on machines running:
@@ -61,6 +64,7 @@ To get access to your **Kubernetes** cluster just
 ```bash
 scp debian@master_ip:~/.kube/config ~/.kube/config
 ```
+</details>
 
 ## Overview
 - Ansible playbook installs Kubernetes (k3s) on a Raspberry Pi 3/4 primarily.
