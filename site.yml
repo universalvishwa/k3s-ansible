@@ -5,7 +5,9 @@
   pre_tasks:
     - name: Get latest release of k3s-io/k3s-ansible
       run_once: yes
-      raw: curl --silent 'https://github.com/k3s-io/k3s/releases/latest' | grep k3s1 | sed -E 's/.*"([^"]+)".*/\1/' | sed 's|.*/||'
+      raw: >
+        curl --silent 'https://github.com/k3s-io/k3s/releases/latest' |
+        grep k3s1 | sed -E 's/.*"([^"]+)".*/\1/' | sed 's|.*/||'
       register: k3s_release
       when: (k3s_version is not defined) or (k3s_version|length == 0)
     - name: Set k3s version
