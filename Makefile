@@ -46,4 +46,4 @@ cmd-validate:
 
 update-fork:
 	@echo "Updating Fork from 'k3s-ansible' official repository to '${BRANCH}' branch ..."
-	@$(GIT) pull $(GITHUB_FORK_REPO_URL) ${GITHUB_FORK_BRANCH}
+	@$(GIT) pull $(GITHUB_FORK_REPO_URL) ${GITHUB_FORK_BRANCH} --ff-only
