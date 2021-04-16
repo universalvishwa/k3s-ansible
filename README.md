@@ -101,7 +101,7 @@ scp debian@master_ip:~/.kube/config ~/.kube/config
 - Update global variables in `group_vars/all.yml` to match the environment if needed.
 
 
-## ??? Run Ansible playbooks
+## Run Ansible playbooks
 1. Run Ansible ping to test connectivity.
     ```bash
     $ ansible-playbook -i hosts.ini ansible_ping.yml
@@ -110,7 +110,11 @@ scp debian@master_ip:~/.kube/config ~/.kube/config
     ```bash
     $ ansible-playbook -i hosts.ini site.yml
     ```
-3. Unconfigure and uninstall Kubernetes (k3s).
+3. Add Kubernetes cluster context to Kubeconfig file.
+    ```bash
+    $ scp ubuntu@master:~/.kube/config ~/.kube/config
+    ```
+4. Unconfigure and uninstall Kubernetes (k3s).
     ```bash
     $ ansible-playbook -i hosts.ini reset.yml
     ```
@@ -119,3 +123,4 @@ scp debian@master_ip:~/.kube/config ~/.kube/config
 - [Build a Kubernetes cluster using k3s via Ansible](https://github.com/k3s-io/k3s-ansible)
 - [Lightweight Kubernetes (k3s)](https://k3s.io/)
 - [Raspberry Pi Cluster Episode 3 - Installing K3s Kubernetes on the Turing Pi](https://www.jeffgeerling.com/blog/2020/installing-k3s-kubernetes-on-turing-pi-raspberry-pi-cluster-episode-3)
+- [How to merge Kubernetes kubeconfig files](https://jacobtomlinson.dev/posts/2019/how-to-merge-kubernetes-kubectl-config-files/)
