@@ -114,10 +114,14 @@ scp debian@master_ip:~/.kube/config ~/.kube/config
     ```bash
     $ scp ubuntu@master:~/.kube/config ~/.kube/config
     ```
-4. Unconfigure and uninstall Kubernetes (k3s).
+4. Verify access to cluster
+    ```bash
+    $ kubectl get nodes
+    $ kubectl get nodes --context default
+    ```
+5. Unconfigure and uninstall Kubernetes (k3s).
     ```bash
     $ ansible-playbook -i hosts.ini reset.yml
-    ```
 
 ## References
 - [Build a Kubernetes cluster using k3s via Ansible](https://github.com/k3s-io/k3s-ansible)
