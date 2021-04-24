@@ -128,3 +128,4 @@ scp debian@master_ip:~/.kube/config ~/.kube/config
 - [Lightweight Kubernetes (k3s)](https://k3s.io/)
 - [Raspberry Pi Cluster Episode 3 - Installing K3s Kubernetes on the Turing Pi](https://www.jeffgeerling.com/blog/2020/installing-k3s-kubernetes-on-turing-pi-raspberry-pi-cluster-episode-3)
 - [How to merge Kubernetes kubeconfig files](https://jacobtomlinson.dev/posts/2019/how-to-merge-kubernetes-kubectl-config-files/)
+- [Ansible Role: k3s (v2.x)](https://github.com/PyratLabs/ansible-role-k3s)
